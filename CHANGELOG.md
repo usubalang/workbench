@@ -6,8 +6,10 @@ A Makefile is better than an script to compile because the Makefile can delete u
 
 We have to be carreful on the includes because each onboard card have their own libraries and its own linker so they need a different Makefile for the moment.
 
-We succed to implemant a program in the card that put on/off light when we press the button.
+We succed to implemant a program in the card that put on/off light when we press the button. 
 
-TODO: Implement the Makefile to make it work with the already working program with the button by coping and pasting the working script and adapting it to fit. Then try to make it work with the printf function from UART. 
+we succed to run screen with UART USB connection with the STM32F401 card.
+
+TODO: Implement the Makefile to make it work with the already working program with the button by coping and pasting the working script and adapting it to fit. Then try to make it work with the printf function from UART.
 
 (TO BE COMPLETED)
