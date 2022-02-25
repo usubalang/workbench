@@ -21,4 +21,11 @@ We also took contact for the code optimization and know where we need to aim whe
 
 TODO: Make a simple function to print on screen on F4-Discovery
 
+on STM32L100:
+We manage to compile a program and run it but we don't understand how to change the out.hex, each time we compile the program and run it with change, nothing is changed and we see no difference. We try to make a program with uart but we don't see the difference for the moment because of the bug with the construction of the out.hex.
+
+Another problem with the UART connection is that we cannot find out which tty port of the USB port is connected to the onboard board.
+
+TODO: find the problem to take control of the onboard board and compile/run another program, then try to implement the uart connection.
+
 (TO BE COMPLETED)
