@@ -33,4 +33,11 @@ We resolve the problem with the out.hex execution, now we complile and execute s
 
 Now the problem with is that the uart connection with usb port seems to be an issue, the card use the ST-LINK/V2 that is not using the tty connection but an extra USB interfaces. So we need to dig deep with this functionality.
 
+2022-03-11 Print with UART on STM32F4 Discovery and STM32L100, and observe the time with an oscilloscope
+
+We discovered that the ST-LINK/V2-A supports a Virtual COM port (VCP) on U2 pin 12 (ST-LINK_TX) and U2 pin 13 (ST-LINK_RX) but these pins are not connected to the USART of the STM32F407 microcontroller. In conclusion, it is not possible for now to make the UART work on this system. So the problematic was also the version of STLINK. sources : https://os.mbed.com/questions/81581/No-USB-or-UART-on-STM32F407-Discovery/  cf. 6.1.3 de https://www.st.com/content/ccc/resource/technical/document/user_manual/70/fe/4a/3f/e7/e1/4f/7d/DM00039084.pdf/files/DM00039084.pdf/jcr:content/translations/en.DM00039084.pdf
+
+
+TODO: Ask a physician if wiring the pins on the STM32F4 Discovery is possible and don't cost to much + Make the UART works on STM32F756
+
 (TO BE COMPLETED)
