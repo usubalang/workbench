@@ -40,7 +40,8 @@ We discovered that the ST-LINK/V2-A supports a Virtual COM port (VCP) on U2 pin 
 finally, the STM32L100 cannot use a usb connection, the only way to use uart with usb connection is with an addaptater ST-LINK/V2.
 https://electronics.stackexchange.com/questions/321446/is-it-possible-to-use-st-link-usb-for-uart-communication
 
-TODO: compile and see a uart connection with the card STM32G031.
+OPENOCD does not support the STM32G0/STM32G4 as target so we need to do it manualy:
+https://rleh.de/2019/10/08/openocd-stm32-stm32g4-stm32g0.html
 
 TODO: Ask a physician if wiring the pins on the STM32F4 Discovery is possible and don't cost to much + Make the UART works on STM32F756
 
