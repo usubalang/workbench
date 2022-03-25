@@ -45,4 +45,9 @@ https://rleh.de/2019/10/08/openocd-stm32-stm32g4-stm32g0.html
 
 TODO: Ask a physician if wiring the pins on the STM32F4 Discovery is possible and don't cost to much + Make the UART works on STM32F756
 
+2022-03-11 
+Card STM32F756 Nucleo-144
+Cannot find any project on CubeF7 for this card. After trying to compile a script I wasn't able to find for instance the linker file for this card.
+Trying to compile a file a sending creates imports error. Most tutorial are using CubeIDE to code on this card.
+
 (TO BE COMPLETED)
