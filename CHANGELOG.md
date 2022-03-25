@@ -37,11 +37,13 @@ Now the problem with is that the uart connection with usb port seems to be an is
 
 We discovered that the ST-LINK/V2-A supports a Virtual COM port (VCP) on U2 pin 12 (ST-LINK_TX) and U2 pin 13 (ST-LINK_RX) but these pins are not connected to the USART of the STM32F407 microcontroller. In conclusion, it is not possible for now to make the UART work on this system. So the problematic was also the version of STLINK. sources : https://os.mbed.com/questions/81581/No-USB-or-UART-on-STM32F407-Discovery/  cf. 6.1.3 de https://www.st.com/content/ccc/resource/technical/document/user_manual/70/fe/4a/3f/e7/e1/4f/7d/DM00039084.pdf/files/DM00039084.pdf/jcr:content/translations/en.DM00039084.pdf
 
-finally, the STM32L100 cannot use a usb connection, the only way to use uart with usb connection is with an addaptater ST-LINK/V2.
+Finally, the STM32L100 cannot use a usb connection, the only way to use uart with usb connection is with an addaptater ST-LINK/V2.
 https://electronics.stackexchange.com/questions/321446/is-it-possible-to-use-st-link-usb-for-uart-communication
 
 OPENOCD does not support the STM32G0/STM32G4 as target so we need to do it manualy:
 https://rleh.de/2019/10/08/openocd-stm32-stm32g4-stm32g0.html
+
+The OpenOCD work but it's missing the file st_nucleo_G0.cfg to execute the right command openOCD
 
 TODO: Ask a physician if wiring the pins on the STM32F4 Discovery is possible and don't cost to much + Make the UART works on STM32F756
 
