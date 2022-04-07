@@ -52,6 +52,7 @@ Card STM32F756 Nucleo-144
 Cannot find any project on CubeF7 for this card. After trying to compile a script I wasn't able to find for instance the linker file for this card.
 Trying to compile a file a sending creates imports error. Most tutorial are using CubeIDE to code on this card.
 
+We try to install gem5 with Maël computer's but it was not enough powerfull, We search for another program. We find QEMU that emulate the proccesor of on embedded card. But it cannot give extra informations about the run time etc.. that we cannot find on a regular embedded card. So we are trying another computer to run gem5.
 
 2022-04-01
 Physical Time: We have been able to enable the GPIO pins for the card when starting the primitiv and disabling it when it stops. We can get a value of time with an oscilloscope. Though we might have some issue because the time seemed wrong.
