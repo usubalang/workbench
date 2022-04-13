@@ -57,4 +57,10 @@ We try to install gem5 with Maël computer's but it was not enough powerfull, We
 2022-04-01
 Physical Time: We have been able to enable the GPIO pins for the card when starting the primitiv and disabling it when it stops. We can get a value of time with an oscilloscope. Though we might have some issue because the time seemed wrong.
 
+2022-04-21
+Ways to optimize :
+- "first replacing if/ statement with loops allows avoiding several conditional branches
+treatment that are quit expensive in ARM assembly", thèse de Dahmun, page 88
+- load optimization : cf https://zulip-uploads.s3.amazonaws.com/36469/lmvVjYfj9dg9Gdq7MmEKhTex/1-s2.0-S1474667015373444-main.pdf?AWSAccessKeyId=AKIAIEVMBCAT2WD3M5KQ&Signature=wZpW01yaooXTQRqXrpvKspccOeI%3D&Expires=1649862720
+
 (TO BE COMPLETED)
