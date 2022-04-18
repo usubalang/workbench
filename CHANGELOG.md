@@ -22,7 +22,7 @@ We also took contact for the code optimization and know where we need to aim whe
 TODO: Make a simple function to print on screen on F4-Discovery
 
 On STM32L100:
-We manage to compile a program and run it but we don't understand how to change the out.hex, each time we compile the program and run it with change, nothing is changed and we see no difference. We try to make a program with uart but we don't see the difference for the moment because of the bug with the construction of the out.hex.
+We manage to compile a program and run it but we don't understand how to change the out.hex, each time we compile the program and run it with change, nothing is changed and we see no difference. We try to make a program with uart but we don't see the difference for the moment because of the bug with the construction of the out.hex. 
 
 Another problem with the UART connection is that we cannot find out which tty port of the USB port is connected to the onboard board.
 
@@ -53,6 +53,8 @@ Cannot find any project on CubeF7 for this card. After trying to compile a scrip
 Trying to compile a file a sending creates imports error. Most tutorial are using CubeIDE to code on this card.
 
 We try to install gem5 with Maël computer's but it was not enough powerfull, We search for another program. We find QEMU that emulate the proccesor of on embedded card. But it cannot give extra informations about the run time etc.. that we cannot find on a regular embedded card. So we are trying another computer to run gem5.
+
+We found the bottleneck of the pyjamask program and it is located in the mat_mult_v32 function where it passes 93% of the time (~17088 / 18314 cycles)
 
 2022-04-01
 Physical Time: We have been able to enable the GPIO pins for the card when starting the primitiv and disabling it when it stops. We can get a value of time with an oscilloscope. Though we might have some issue because the time seemed wrong.
