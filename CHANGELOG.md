@@ -59,10 +59,14 @@ We found the bottleneck of the pyjamask program and it is located in the mat_mul
 2022-04-01
 Physical Time: We have been able to enable the GPIO pins for the card when starting the primitiv and disabling it when it stops. We can get a value of time with an oscilloscope. Though we might have some issue because the time seemed wrong.
 
-2022-04-21
+2022-04-14
 Ways to optimize :
-- "first replacing if/ statement with loops allows avoiding several conditional branches
-treatment that are quit expensive in ARM assembly", thèse de Dahmun, page 88
-- load optimization : cf https://zulip-uploads.s3.amazonaws.com/36469/lmvVjYfj9dg9Gdq7MmEKhTex/1-s2.0-S1474667015373444-main.pdf?AWSAccessKeyId=AKIAIEVMBCAT2WD3M5KQ&Signature=wZpW01yaooXTQRqXrpvKspccOeI%3D&Expires=1649862720
+* "first replacing if/ statement with loops allows avoiding several conditional branches treatment that are quit expensive in ARM assembly", [thèse de Dahmun](https://dgoudarzi.github.io/contents/thesis.pdf), page 88
+* load optimization : cf https://zulip-uploads.s3.amazonaws.com/36469/lmvVjYfj9dg9Gdq7MmEKhTex/1-s2.0-S1474667015373444-main.pdf?AWSAccessKeyId=AKIAIEVMBCAT2WD3M5KQ&Signature=wZpW01yaooXTQRqXrpvKspccOeI%3D&Expires=1649862720
+* Cost of each assembling instruction (CF [Dahmun thesis](https://dgoudarzi.github.io/contents/thesis.pdf) page 18
+  * Data instructions EOR, ADD, SUB, AND, MOV: 1
+  * Memory instructions LDR, STR / LDM, STM: 3 or n + 2
+  * Branching instructions B, BX, BL: 3 or 4
+* Try to always combine one barrel shifter with one operation making it the shift cost 0 clock cycle (Same thesis) > the barrel shifter allowing any data instruction to shift one of its operands at no extra cost in terms of clock cycles. Four kinds of shifting are supported: the logical shift left (LSL), the logical shift right (LSR), the arithmetic shift right (ASR), and the rotate-right (ROR)
 
 (TO BE COMPLETED)
