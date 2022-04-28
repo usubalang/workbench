@@ -69,4 +69,9 @@ Ways to optimize :
   * Branching instructions B, BX, BL: 3 or 4
 * Try to always combine one barrel shifter with one operation making it the shift cost 0 clock cycle (Same thesis) > the barrel shifter allowing any data instruction to shift one of its operands at no extra cost in terms of clock cycles. Four kinds of shifting are supported: the logical shift left (LSL), the logical shift right (LSR), the arithmetic shift right (ASR), and the rotate-right (ROR)
 
+Physical time : We measured a physical time 24 times greater than the computer time, the problem came from the printf(%d) in the execution loop of the primitive. Indeed, the printf causes a very long execution time and therefore a measurement time of the electrical signal on the oscilloscope.
+By removing them, we find a measured duration much closer to the computer duration. To get closer, the program is executed several times and the cycle difference is noted. At best we find a cycle difference of 100.
+
+This difference comes from 2 things: measurement uncertainties on the oscilloscope for very short durations (about ten us) and probably the .hal library which leads to an increase in the duration of the signals on the PINs.
+
 (TO BE COMPLETED)
