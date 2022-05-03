@@ -13,6 +13,7 @@ LINKER_FILE=linker/STM32F401VEHx_FLASH.ld
 LD_FLAGS=-L${LIBDIR}		\
 	  -lstm32f4xxbsp	\
 	  -lstm32f4xxhal	\
+	  -funroll-loops 	\
           -Wl,--gc-sections
 
 CFLAGS=-Wall		\

@@ -85,16 +85,12 @@ void mat_mult__V32 (/*inputs*/ DATATYPE col__,DATATYPE vec__, /*outputs*/ DATATY
 
 }
 
-void MixRows__V32 (/*inputs*/ DATATYPE input__[4], /*outputs*/ DATATYPE output__[4]) {
+void MixRows__V32 (/*inputs*/ DATATYPE input__[4], /*outputs*/ DATATYPE output__[4],DATATYPE M__[4]) {
 
   // Variables declaration
-  DATATYPE M__[4];
 
   // Instructions (body)
-  M__[0] = LIFT_32(2743472261);
-  M__[1] = LIFT_32(1665232929);
-  M__[2] = LIFT_32(1764553344);
-  M__[3] = LIFT_32(1218791443);
+  
   for (int i__ = 0; i__ <= 3; i__++) {
     mat_mult__V32(M__[i__],input__[i__],&output__[i__]);
   }
@@ -108,16 +104,22 @@ void pyjamask__ (/*inputs*/ DATATYPE plaintext__[4],DATATYPE key__[15][4], /*out
   DATATYPE _tmp11_[4];
   DATATYPE _tmp12_[4];
   DATATYPE round__[4];
+  DATATYPE M__[4];
 
   // Instructions (body)
   round__[0] = plaintext__[0];
   round__[1] = plaintext__[1];
   round__[2] = plaintext__[2];
   round__[3] = plaintext__[3];
+  M__[0] = LIFT_32(2743472261);
+  M__[1] = LIFT_32(1665232929);
+  M__[2] = LIFT_32(1764553344);
+  M__[3] = LIFT_32(1218791443);
+  #pragma GCC unroll (14)
   for (int i__ = 0; i__ <= 13; i__++) {
     AddRoundKey__V32(round__,key__[i__],_tmp11_);
     SubBytes__V32(_tmp11_[0],_tmp11_[1],_tmp11_[2],_tmp11_[3],_tmp12_);
-    MixRows__V32(_tmp12_,round__);
+    MixRows__V32(_tmp12_,round__,M__);
   }
   AddRoundKey__V32(round__,key__[14],ciphertext__);
 
