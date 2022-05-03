@@ -13,54 +13,9 @@
 #include "STD.h"
 
 /* auxiliary functions */
-void SubBytes__V32 (/*inputs*/ DATATYPE s0,DATATYPE s1,DATATYPE s2,DATATYPE s3, /*outputs*/ DATATYPE ret[4]) {
 
-  // Variables declaration
-  DATATYPE _shadow_s01_;
-  DATATYPE _shadow_s03_;
-  DATATYPE _shadow_s14_;
-  DATATYPE _shadow_s17_;
-  DATATYPE _shadow_s25_;
-  DATATYPE _shadow_s26_;
-  DATATYPE _shadow_s32_;
-  DATATYPE _shadow_s38_;
-  DATATYPE _tmp1_;
-  DATATYPE _tmp2_;
-  DATATYPE _tmp3_;
-  DATATYPE _tmp4_;
 
-  // Instructions (body)
-  _shadow_s01_ = XOR(s0,s3);
-  _tmp1_ = AND(_shadow_s01_,s1);
-  _shadow_s32_ = XOR(s3,_tmp1_);
-  _tmp2_ = AND(s1,s2);
-  _shadow_s03_ = XOR(_shadow_s01_,_tmp2_);
-  _tmp3_ = AND(s2,_shadow_s32_);
-  _shadow_s14_ = XOR(s1,_tmp3_);
-  _tmp4_ = AND(_shadow_s03_,_shadow_s32_);
-  _shadow_s25_ = XOR(s2,_tmp4_);
-  _shadow_s26_ = XOR(_shadow_s25_,_shadow_s14_);
-  _shadow_s17_ = XOR(_shadow_s14_,_shadow_s03_);
-  _shadow_s38_ = NOT(_shadow_s32_);
-  ret[0] = _shadow_s03_;
-  ret[1] = _shadow_s17_;
-  ret[2] = _shadow_s38_;
-  ret[3] = _shadow_s26_;
 
-}
-
-void AddRoundKey__V32 (/*inputs*/ DATATYPE i__[4],DATATYPE k__[4], /*outputs*/ DATATYPE o__[4]) {
-
-  // Variables declaration
-  ;
-
-  // Instructions (body)
-  o__[0] = XOR(i__[0],k__[0]);
-  o__[1] = XOR(i__[1],k__[1]);
-  o__[2] = XOR(i__[2],k__[2]);
-  o__[3] = XOR(i__[3],k__[3]);
-
-}
 
 void mat_mult__V32 (/*inputs*/ DATATYPE col__,DATATYPE vec__, /*outputs*/ DATATYPE* res__) {
 
@@ -82,7 +37,6 @@ void mat_mult__V32 (/*inputs*/ DATATYPE col__,DATATYPE vec__, /*outputs*/ DATATY
     mat_col__ = R_ROTATE(mat_col__,1,32);
   }
   *res__ = res_tmp__;
-
 }
 
 void MixRows__V32 (/*inputs*/ DATATYPE input__[4], /*outputs*/ DATATYPE output__[4]) {
@@ -98,14 +52,12 @@ void MixRows__V32 (/*inputs*/ DATATYPE input__[4], /*outputs*/ DATATYPE output__
   for (int i__ = 0; i__ <= 3; i__++) {
     mat_mult__V32(M__[i__],input__[i__],&output__[i__]);
   }
-
 }
 
 /* main function */
 void pyjamask__ (/*inputs*/ DATATYPE plaintext__[4],DATATYPE key__[15][4], /*outputs*/ DATATYPE ciphertext__[4]) {
 
   // Variables declaration
-  DATATYPE _tmp11_[4];
   DATATYPE _tmp12_[4];
   DATATYPE round__[4];
 
@@ -115,12 +67,16 @@ void pyjamask__ (/*inputs*/ DATATYPE plaintext__[4],DATATYPE key__[15][4], /*out
   round__[2] = plaintext__[2];
   round__[3] = plaintext__[3];
   for (int i__ = 0; i__ <= 13; i__++) {
-    AddRoundKey__V32(round__,key__[i__],_tmp11_);
-    SubBytes__V32(_tmp11_[0],_tmp11_[1],_tmp11_[2],_tmp11_[3],_tmp12_);
+    _tmp12_[0] = round__[0] + key__[i__][0];
+    _tmp12_[1] = round__[1] + key__[i__][1];
+    _tmp12_[2] = round__[2] + key__[i__][2];
+    _tmp12_[3] = round__[3] + key__[i__][3];
     MixRows__V32(_tmp12_,round__);
   }
-  AddRoundKey__V32(round__,key__[14],ciphertext__);
-
+  ciphertext__[0] = round__[0];
+  ciphertext__[1] = round__[1];
+  ciphertext__[2] = round__[2];
+  ciphertext__[3] = round__[3];
 }
 
 /* Additional functions */
