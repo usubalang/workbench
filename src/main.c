@@ -40,7 +40,7 @@
 extern uint32_t bench_speed();
 
 /** @addtogroup STM32F4xx_HAL_Examples
-  * @{
+  * @{		
   */
 
 /** @addtogroup UART_Printf
@@ -110,14 +110,14 @@ int main(void)
     Error_Handler(); 
   }
 
-  printf("run; cycles; c/B\n");
-  for (int i = 0; i < 3; i++){
+  printf("\rrun; cycles; c/B\n\r");
+  for (int i = 0; i < 10; i++){
 
     unsigned long t1 = get_cycle_count();
     int len = bench_speed();
     unsigned long cycles = get_cycle_count() - t1;
 
-    printf("%i; %lu; %lu\n", i, cycles, cycles/len);
+    printf("%i; %lu; %lu\n\r", i, cycles, cycles/len);
 
   }
 
