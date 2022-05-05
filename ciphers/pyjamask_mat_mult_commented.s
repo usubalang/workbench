@@ -48,7 +48,7 @@ mat_mult__V32:
 	and	r3, r3, r2	@logical and
 	str	r3, [fp, #-28]
 	ldr	r2, [fp, #-12]	@Load
-	ldr	r3, [fp, #-28]	@Store la meme donnée
+	ldr	r3, [fp, #-28]	@Load
 	eor	r3, r3, r2	@Logical exclusive OR
 	str	r3, [fp, #-12]
 	ldr	r3, [fp, #-8]
